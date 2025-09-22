@@ -1,4 +1,3 @@
-/* delete_dnodeint_at_index.c */
 #include "lists.h"
 #include <stdlib.h>
 
@@ -19,25 +18,24 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 
     tmp = *head;
 
-    /* If we need to delete the head (index == 0) */
+    /* Delete the head node */
     if (index == 0)
     {
-        *head = tmp->next;          /* move head */
+        *head = tmp->next;
         if (*head != NULL)
-            (*head)->prev = NULL;   /* new head's prev must be NULL */
+            (*head)->prev = NULL;
         free(tmp);
         return (1);
     }
 
-    /* traverse to the node at position index */
+    /* Traverse to the node at position index */
     for (i = 0; tmp != NULL && i < index; i++)
         tmp = tmp->next;
 
-    /* if index is out of range */
     if (tmp == NULL)
         return (-1);
 
-    /* unlink tmp from the list */
+    /* Unlink tmp from the list */
     if (tmp->prev != NULL)
         tmp->prev->next = tmp->next;
     if (tmp->next != NULL)
